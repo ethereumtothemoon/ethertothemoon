@@ -29,7 +29,7 @@
       </div>
     </header>
       <p style="text-align:right">
-        Your balance: <strong style="font-size: 15px; color:#2bbc8a">1 ETH</strong>
+        Your balance: <strong style="font-size: 15px; color:#2bbc8a"><b id="user-amount"></b> ETH</strong>
       </p>
       <hr/>
       <div>
@@ -70,27 +70,19 @@
 
       </ul>
     </div>
-    <!-- <script src="/assets/js/ethertothemoon.js"></script> -->
+
+    <script src="/assets/js/ethertothemoon.js"></script>
     <script>
       function sendMessage(){
         var ether = document.getElementById("ether").value;
         var message = document.getElementById("message").value;
-        console.log(ether, message);
+        buyAmount(message, ether);
       }
       function showForm() {
         var form = document.getElementById("form");
         form.style.display = "block";
       }
-      var left = '<tr><td style="text-align:left">';
-      var center = '.</td><td style="text-align:center">';
-      var right = ' ETH</td><td style="text-align:right">';
-      var data1 = [100, 90,80,70,60,50,40,30,20,10];
-      var data2 = ['https://www.hiration.com','https://www.hiration.com','https://www.hiration.com','https://www.hiration.com','https://www.hiration.com','https://www.hiration.com','https://www.hiration.com','https://www.hiration.com','https://www.hiration.com','https://www.hiration.com',];
-      var str = '';
-      for(var i = 0; i < 10; i++) {
-        str += left + (i+1) + center + data1[i] + right + data2[i] + '</td></tr>';
-      }
-      document.getElementById("tbody").innerHTML = str;
+
     </script>
   </body>
 </html>

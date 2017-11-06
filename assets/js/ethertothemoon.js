@@ -1,3 +1,5 @@
+var amounts;
+var messages;
 window.addEventListener('load', function() {
   if (typeof web3 !== 'undefined') {
     window.web3 = new Web3(web3.currentProvider);
@@ -9,68 +11,57 @@ window.addEventListener('load', function() {
       if(!err)
       networkId = netId;
     })
-    abi = [{"constant":true,"inputs":[],"name":"totalContribution","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"richDatabase","outputs":[{"name":"amount","type":"uint256"},{"name":"message","type":"bytes32"},{"name":"sender","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"buyerHistory","outputs":[{"name":"","type":"address[]"},{"name":"","type":"uint256[]"},{"name":"","type":"bytes32[]"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"message","type":"bytes32"}],"name":"takeMyMoney","outputs":[{"name":"","type":"bool"}],"payable":true,"stateMutability":"payable","type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"users","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_amount","type":"uint256"}],"name":"withdraw","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"name":"user","type":"address"},{"indexed":false,"name":"amount","type":"uint256"}],"name":"NewRich","type":"event"}]
-
-    escrowContract = web3.eth.contract(abi).at('0x498F9650AFb05D397F1317DD391B003c99F4df0a');
+    abi = [{"constant":true,"inputs":[],"name":"totalContribution","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"richDatabase","outputs":[{"name":"amount","type":"uint256"},{"name":"message","type":"bytes32"},{"name":"sender","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"buyerHistory","outputs":[{"name":"","type":"address[]"},{"name":"","type":"uint256[]"},{"name":"","type":"bytes32[]"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"message","type":"bytes32"}],"name":"takeMyMoney","outputs":[{"name":"","type":"bool"}],"payable":true,"stateMutability":"payable","type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"users","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_amount","type":"uint256"}],"name":"withdraw","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"name":"user","type":"address"},{"indexed":false,"name":"amount","type":"uint256"}],"name":"NewRich","type":"event"}];
+    escrowContract = web3.eth.contract(abi).at('0x78bEe7E871d926F35BF88Aa99A2e3c3bEfD5E027');
+    listTransaction();
+    getAmount();
   }}
 )
 function getAmount(){
   web3.eth.getAccounts(function(error, sender){
+    console.log(sender[0]);
   escrowContract.users(sender[0], function(error, result){
-    if(!error)
-    console.log(result);
+    if(!error){
+      document.getElementById("user-amount").innerHTML = web3.fromWei(result, 'ether');
+    }
     else {
       console.log(error);
     }
   })
-}}
-function buyAmount(message){
+})
+}
+function buyAmount(message, value){
   web3.eth.getAccounts(function(error, sender){
   escrowContract.takeMyMoney.sendTransaction(message, {value: web3.toWei(value, 'ether'), gasLimit: 21000}, function(error, result){
     if(!error)
-    console.log(result);
+    return true;
     else {
       console.log(error);
     }
   })
-}}
+})
+}
 function listTransaction(){
-  // var tbody = document.getElementById("tbody");
-  // while (tbody.firstChild) {
-  //   tbody.removeChild(tbody.firstChild);
-  // }
   var totalAddresses = 10;
-  for (var addressNumber = 0; addressNumber < totalAddresses; addressNumber++) (function(addressNumber){
       escrowContract.buyerHistory.call(function (error, result){
       if(!error){
-        showList(result);
+        console.log(result);
+        amounts =  result[1];
+        messages = result[2];
+        console.log(amounts, messages);
+        var left = '<tr><td style="text-align:left">';
+        var center = '.</td><td style="text-align:center">';
+        var right = ' ETH</td><td style="text-align:right">';
+        var amounts;
+        var messages;
+        var str = '';
+        for(var i = 0; i < 10; i++) {
+          str += left + (i+1) + center + web3.fromWei(amounts[i], 'ether') + right + web3.toAscii(messages[i], 'hex') + '</td></tr>';
+        }
+        document.getElementById("tbody").innerHTML = str;
       }
       else {
-        console.error(error)
+        console.log(error);
       }
     })
-  })
 }
-function showList(){
-  for (var count = 0; count < 10; count++) (function(count){
-    var row = document.createElement('tr');
-    for (rowCount = 0; rowCount < 3; rowCount++) {
-      if (rowCount == 0){
-        var cell = document.createElement('td');
-        cell.appendChild(document.createTextNode(result[rowCount][count]));
-        row.appendChild(cell);
-      }
-      if (rowCount == 1){
-        var cell = document.createElement('td');
-        cell.appendChild(document.createTextNode(web3.fromWei(result[rowCount][count],'ether')));
-        row.appendChild(cell);
-      }
-      if (rowCount == 2){
-        var cell = document.createElement('td');
-        cell.appendChild(document.createTextNode(web3.toAscii(result[rowCount][count],'hex')));
-        row.appendChild(cell);
-      }}
-      var table = document.getElementById('table');
-      table.appendChild(row);
-    }) (count);
-  }v
