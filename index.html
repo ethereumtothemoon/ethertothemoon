@@ -1,32 +1,33 @@
 <html>
-  <head>
-    <link rel="stylesheet" href="assets/css/cactus.css" />
-    <link rel="stylesheet" href="assets/css/styles.css" />
-  </head>
-  <body>
-    <div class="content index width mx-auto px2 my4">
-      <header id="header">
-        <a href="/cactus-dark/">
+<head>
+  <link rel="stylesheet" href="assets/css/cactus.css" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+</head>
+<body>
+  <div class="content index width mx-auto px2 my4">
+    <header id="header">
+      <a href="/cactus-dark/">
 
-          <div id="title">
-            <h1>EtherToTheMoon</h1>
-          </div>
-        </a>
-        <div id="nav">
-          <ul>
-            <li class="icon">
-              <a href="#"><i class="fa fa-bars fa-2x"></i></a>
-            </li>
-
-              <li><a href="/home.html">Home</a></li>
-
-              <li><a href="/about.html">About</a></li>
-
-              <li><a href="http://github.com/probberechts" rel="external nofollow noopener noreferrer" target="_blank">Contract</a></li>
-
-          </ul>
+        <div id="title">
+          <h1>EtherToTheMoon</h1>
         </div>
-      </header>
+      </a>
+      <div id="nav">
+        <ul>
+          <li class="icon">
+            <a href="#"><i class="fa fa-bars fa-2x"></i></a>
+          </li>
+
+            <li><a href="/">Home</a></li>
+
+            <li><a href="/about.html">About</a></li>
+
+            <li><a href="http://github.com/probberechts" rel="external nofollow noopener noreferrer" target="_blank">Contract</a></li>
+
+        </ul>
+      </div>
+    </header>
       <p style="text-align:right">
         Your balance: <strong style="font-size: 15px; color:#2bbc8a">1 ETH</strong>
       </p>
@@ -49,14 +50,27 @@
       <br />
       <button onclick="showForm()" style="border:transparent;background:#2bbc8a;padding: 6px; padding-left:16px; padding-right:16px">ADD FUNDS</button>
       <form id="form" style="display: none; margin: 0 auto; text-align: center">
-        <input id="ether" placeholder="Enter Ether Amount" name="ether"  type="number"/><br />
-        <input id="message" placeholder="Enter Message" name="message" type="text"/><br />
+        <input id="ether" placeholder="Enter Ether to send" name="ether"  type="number"/><br />
+        <input id="message" placeholder="Enter Message" maxlength="32" name="message" type="text"/><br />
         <button type="button" onclick="sendMessage()" style="border:transparent;background:#2bbc8a;padding: 6px; padding-left:16px; padding-right:16px">SEND</button>
       </form>
+
     </div>
     <div class="footer">
         &copy; 2017 EtherToTheMoon
+        <ul id="sociallinks">
+
+          <li><a class="icon" target="_blank" href="http://github.com/probberechts/cactus-dark" title="github" rel="external nofollow noopener noreferrer"><i class="fa fa-github"></i></a></li>
+
+          <li><a class="icon" target="_blank" href="/cactus-dark/" title="twitter"><i class="fa fa-twitter"></i></a></li>
+
+          <li><a class="icon" target="_blank" href="/cactus-dark/" title="facebook"><i class="fa fa-facebook"></i></a></li>
+
+          <li><a class="icon" target="_blank" href="/cactus-dark/" title="linkedin"><i class="fa fa-linkedin"></i></a></li>
+
+      </ul>
     </div>
+    <!-- <script src="/assets/js/ethertothemoon.js"></script> -->
     <script>
       function sendMessage(){
         var ether = document.getElementById("ether").value;
