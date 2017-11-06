@@ -1,0 +1,82 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="assets/css/cactus.css" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <div class="content index width mx-auto px2 my4">
+      <header id="header">
+        <a href="/cactus-dark/">
+
+          <div id="title">
+            <h1>EtherToTheMoon</h1>
+          </div>
+        </a>
+        <div id="nav">
+          <ul>
+            <li class="icon">
+              <a href="#"><i class="fa fa-bars fa-2x"></i></a>
+            </li>
+
+              <li><a href="/home.html">Home</a></li>
+
+              <li><a href="/about.html">About</a></li>
+
+              <li><a href="http://github.com/probberechts" rel="external nofollow noopener noreferrer" target="_blank">Contract</a></li>
+
+          </ul>
+        </div>
+      </header>
+      <p style="text-align:right">
+        Your balance: <strong style="font-size: 15px; color:#2bbc8a">1 ETH</strong>
+      </p>
+      <hr/>
+      <div>
+        <table>
+          <thead>
+          <tr>
+            <th style="text-align:left">Rank</th>
+            <th style="text-align:center">Amount</th>
+            <th style="text-align:right">Message</th>
+          </tr>
+          </thead>
+          <tbody id="tbody">
+
+          </tbody>
+          </table>
+      </div>
+      <hr/>
+      <br />
+      <button onclick="showForm()" style="border:transparent;background:#2bbc8a;padding: 6px; padding-left:16px; padding-right:16px">ADD FUNDS</button>
+      <form id="form" style="display: none; margin: 0 auto; text-align: center">
+        <input id="ether" placeholder="Enter Ether Amount" name="ether"  type="number"/><br />
+        <input id="message" placeholder="Enter Message" name="message" type="text"/><br />
+        <button type="button" onclick="sendMessage()" style="border:transparent;background:#2bbc8a;padding: 6px; padding-left:16px; padding-right:16px">SEND</button>
+      </form>
+    </div>
+    <div class="footer">
+        &copy; 2017 EtherToTheMoon
+    </div>
+    <script>
+      function sendMessage(){
+        var ether = document.getElementById("ether").value;
+        var message = document.getElementById("message").value;
+        console.log(ether, message);
+      }
+      function showForm() {
+        var form = document.getElementById("form");
+        form.style.display = "block";
+      }
+      var left = '<tr><td style="text-align:left">';
+      var center = '.</td><td style="text-align:center">';
+      var right = ' ETH</td><td style="text-align:right">';
+      var data1 = [100, 90,80,70,60,50,40,30,20,10];
+      var data2 = ['https://www.hiration.com','https://www.hiration.com','https://www.hiration.com','https://www.hiration.com','https://www.hiration.com','https://www.hiration.com','https://www.hiration.com','https://www.hiration.com','https://www.hiration.com','https://www.hiration.com',];
+      var str = '';
+      for(var i = 0; i < 10; i++) {
+        str += left + (i+1) + center + data1[i] + right + data2[i] + '</td></tr>';
+      }
+      document.getElementById("tbody").innerHTML = str;
+    </script>
+  </body>
+</html>
