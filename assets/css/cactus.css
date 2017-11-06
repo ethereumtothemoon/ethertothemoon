@@ -1,0 +1,32 @@
+
+blockquote {
+  background: inherit;
+color: #ccffb6;
+border-left: 0px solid #ccc;
+margin: 1rem 10px;
+padding: 0.5em 10px;
+quotes: "\201C" "\201D" "\2018" "\2019";
+}
+
+form {
+  padding: 20px;
+}
+
+input {
+  padding: 4px 16px 4px 16px;
+  font-size: 15px;
+  margin: 8px;
+  border-radius: 4px;
+  width: 300px;
+}
+form button {
+  margin: 8px;
+  font-size: 15px;
+  padding: 4px 16px 4px 16px;
+  width: 300px;
+  color: white;
+}
+
+li a {
+  color: grey;
+}
