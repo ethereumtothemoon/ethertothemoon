@@ -19,7 +19,6 @@ window.addEventListener('load', function() {
 )
 function getAmount(){
   web3.eth.getAccounts(function(error, sender){
-    console.log(sender[0]);
   escrowContract.users(sender[0], function(error, result){
     if(!error){
       document.getElementById("user-amount").innerHTML = web3.fromWei(result, 'ether');
@@ -45,10 +44,8 @@ function listTransaction(){
   var totalAddresses = 10;
       escrowContract.buyerHistory.call(function (error, result){
       if(!error){
-        console.log(result);
         amounts =  result[1];
         messages = result[2];
-        console.log(amounts, messages);
         var left = '<tr><td style="text-align:left">';
         var center = '.</td><td style="text-align:center">';
         var right = ' ETH</td><td style="text-align:right">';

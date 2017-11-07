@@ -32,11 +32,14 @@
         </ul>
       </div>
     </header>
-      <p style="text-align:left">
-This is a list of 10 messages for humanity.
-        <br/><br/>
-        You have anything good to say? Message length is 32 characters.
-      </p>
+
+      <div style="display: none" id="metamask">
+        <p style="text-align:left">
+           This is a list of 10 messages for humanity.
+            <br/><br/>
+          You have anything good to say? Message length is 32 characters.
+        </p>
+
       <p style="text-align:right">
         Your balance: <strong style="font-size: 15px; color:#2bbc8a"><b id="user-amount"></b> ETH</strong>
       </p>
@@ -74,6 +77,12 @@ No! No! Don’t think about BTC, free money and BS. You’re here for the right 
       </p>
       <a href = "https://twitter.com/intent/tweet?hashtags=EtherToTheMoon,ethereum,dapp&url=http://bit.ly/2hbuz4S" target="_blank" style="border:transparent;background:#2bbc8a;padding: 6px; padding-left:16px; padding-right:16px"><i class="fa fa-twitter"></i></a>
     <a href = "https://github.com/ethereumtothemoon/ethertothemoon" target="_blank" style="border:transparent;background:#2bbc8a;padding: 6px; padding-left:16px; padding-right:16px"><i class="fa fa-github"></i></a>
+      </div>
+      <div id="nometamask">
+        <p>
+          You need to install <a href="https://metamask.io/">MetaMask Plugin</a> to use the app.
+        </p>
+      </div>
     </div>
     <div class="footer">
         &copy; 2017 EtherToTheMoon
@@ -81,6 +90,10 @@ No! No! Don’t think about BTC, free money and BS. You’re here for the right 
 
     <script src="assets/js/ethertothemoon.js"></script>
     <script>
+    if (web3.currentProvider.isMetaMask) {
+      document.getElementById("metamask").style.display = "block";
+      document.getElementById("nometamask").style.display = "none";
+    }
       function sendMessage(){
         var ether = document.getElementById("ether").value;
         var message = document.getElementById("message").value;
