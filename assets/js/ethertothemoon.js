@@ -12,7 +12,7 @@ window.addEventListener('load', function() {
       networkId = netId;
     })
     abi = [{"constant":true,"inputs":[],"name":"totalContribution","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"richDatabase","outputs":[{"name":"amount","type":"uint256"},{"name":"message","type":"bytes32"},{"name":"sender","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"buyerHistory","outputs":[{"name":"","type":"address[]"},{"name":"","type":"uint256[]"},{"name":"","type":"bytes32[]"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"message","type":"bytes32"}],"name":"takeMyMoney","outputs":[{"name":"","type":"bool"}],"payable":true,"stateMutability":"payable","type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"users","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_amount","type":"uint256"}],"name":"withdraw","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"}];
-    escrowContract = web3.eth.contract(abi).at('0x82785602C53AF6c726fd32e2F4E9c8ad7a752279');
+    escrowContract = web3.eth.contract(abi).at('0x9c0C5a14Fde1306686A8a270F271165AcDA670c2');
     listTransaction();
     getAmount();
   }}
