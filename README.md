@@ -1,5 +1,7 @@
 # EtherToTheMoon
 
+The project is live at https://ethereumtothemoon.github.io/ethertothemoon/
+
 Hi guys, we just wanted to let you know that Ethereum is going to go to the moon. Like, all the way! So, you better buy Ethereum, like how we did in June '17 and HODL. 
 
 No! No! Don’t think about BTC, free money and BS. You’re here for the right reasons, right? Ain’t just about money, right? 
